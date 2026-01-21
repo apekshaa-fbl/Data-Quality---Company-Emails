@@ -1,0 +1,1299 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 Menlo-Italic;
+\f3\fmodern\fcharset0 Courier;\f4\fmodern\fcharset0 Courier-Oblique;\f5\froman\fcharset0 Times-Roman;
+\f6\froman\fcharset0 Times-Bold;\f7\fmodern\fcharset0 Courier-Bold;}
+{\colortbl;\red255\green255\blue255;\red114\green201\blue195;\red19\green19\blue19;\red205\green204\blue213;
+\red218\green124\blue212;\red221\green221\blue221;\red174\green176\blue183;\red19\green20\blue21;\red195\green123\blue90;
+\red19\green20\blue21;\red174\green176\blue183;\red185\green101\blue173;\red72\green151\blue245;\red89\green158\blue96;
+\red38\green157\blue169;\red195\green123\blue90;\red185\green101\blue173;\red72\green151\blue245;\red89\green158\blue96;
+\red38\green157\blue169;\red0\green0\blue0;\red31\green46\blue49;\red103\green107\blue114;\red103\green107\blue114;
+\red31\green46\blue49;}
+{\*\expandedcolortbl;;\cssrgb\c50980\c82353\c80784;\cssrgb\c9412\c9412\c9412;\cssrgb\c83922\c83922\c86667;
+\cssrgb\c89020\c58039\c86275;\cssrgb\c89412\c89412\c89412;\csgenericrgb\c68235\c69020\c71765;\csgenericrgb\c7451\c7843\c8235;\csgenericrgb\c76471\c48235\c35294;
+\csgenericrgb\c7451\c7843\c8235;\csgenericrgb\c68235\c69020\c71765;\csgenericrgb\c72549\c39608\c67843;\csgenericrgb\c28235\c59216\c96078;\csgenericrgb\c34902\c61961\c37647;
+\csgenericrgb\c14902\c61569\c66275;\csgenericrgb\c76471\c48235\c35294;\csgenericrgb\c72549\c39608\c67843;\csgenericrgb\c28235\c59216\c96078;\csgenericrgb\c34902\c61961\c37647;
+\csgenericrgb\c14902\c61569\c66275;\cssrgb\c0\c0\c0;\csgenericrgb\c12157\c18039\c19216;\csgenericrgb\c40392\c41961\c44706;\csgenericrgb\c40392\c41961\c44706;
+\csgenericrgb\c12157\c18039\c19216;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}}{\leveltext\leveltemplateid1\'01\'00;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww29200\viewh18380\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Source data prompt\
+App.py\
+I want to create a UI for data quality measure using streamline. In those I need to check for the source data and the bronze data\
+I have my Postgres credentials already entered\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
+PGHOST\cf4 =\cf5 firmable.cluster-ro-ccefncyxmalt.ap-southeast-2.rds.amazonaws.com\cf6 \cb1 \
+\cf2 \cb3 PGPORT\cf4 =\cf5 5432\cf6 \cb1 \
+\cf2 \cb3 PGDATABASE\cf4 =\cf5 firmographics\cf6 \cb1 \
+\cf2 \cb3 PGUSER\cf4 =\cf5 apekshaa_v\cf6 \cb1 \
+\cf2 \cb3 PGPASSWORD\cf4 =
+\f2\i \cf6 my_password
+\f1\i0 \cb1 \
+\cf2 \cb3 PGSSLMODE\cf4 =\cf5 require\cf6 \cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 \
+\
+\
+Important things to note down while creating the UI\
+1. Use professional header\
+2. I want to include the notion document link - https://www.notion.so/firmable/Company-Emails-RCA-Coverage-gaps-2dfd5c6ffd8780fdb32cfff46548fcfb\
+3. After each header there should be a dropdown that shows the query\
+4. I need to give insight for each \
+5. I need to add a comment box after each query and anyone who uses this app can add comment for changes or any insights found. And also a a box for Link : . This is used for sample manual testing\
+\
+\
+After this I want to a create a log to show when was this run\
+And also not to do this at once. I will give you an idea of how this app should work\
+1. On every release the quality of data should be measured.\
+2. Based on the insights and comments the data quality is being monitored and improved\
+3. After that either a cron job or whenever the quality if being measure, the dashboard should  be refreshed \
+4. The old logs should also be there in order to find the Trend on how the quality is. It should measure the volume increase as well has how the quality has improved as insight\
+5. If there are any recommendations  it would be useful as well\
+\
+\
+\
+Now I need the following in the streamlit app\
+1. I have given queries in which needs to be run and give results\
+ \
+1. Understanding the Coverage
+\fs26 \cf7 \cb8 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f3 \cf9 \cb10 with \cf11 email_per_company \cf9 as \cf11 (\
+    \cf9 select\
+        h\cf11 .\cf12 id\cf11 ,\
+        
+\f4\i \cf13 count
+\f3\i0 \cf11 (e.\cf12 email\cf11 ) \cf9 as \cf11 email_count\
+    \cf9 from \cf11 zeus_bronze.brz_company_hub \cf9 h\
+             left join \cf11 zeus_bronze.brz_comp_emails e\
+                       \cf9 on h\cf11 .\cf12 id \cf11 = e.\cf12 id\
+                           \cf9 and \cf11 e.\cf12 email \cf9 is not null\
+                           and 
+\f4\i \cf13 trim
+\f3\i0 \cf11 (e.\cf12 email\cf11 ) <> \cf14 ''\
+    \cf9 group by h\cf11 .\cf12 id\
+\cf11 )\
+\cf9 select\
+    
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) \cf9 as \cf11 "Total Count of Companies",\
+    
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 case when \cf11 email_count >= \cf15 1 \cf9 then \cf15 1 \cf9 else \cf15 0 \cf9 end\cf11 ) \cf9 as \cf11 "Companies that has email",\
+    
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 case when \cf11 email_count = \cf15 0 \cf9 then \cf15 1 \cf9 else \cf15 0 \cf9 end\cf11 ) \cf9 as \cf11 "Companies without email",\
+    
+\f4\i \cf13 round
+\f3\i0 \cf11 (\cf15 100.0 \cf11 * 
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 case when \cf11 email_count >= \cf15 1 \cf9 then \cf15 1 \cf9 else \cf15 0 \cf9 end\cf11 ) / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 count
+\f3\i0 \cf11 (*),\cf15 0\cf11 ), \cf15 2\cf11 ) \cf9 as \cf11 "% of Companies that has email",\
+    
+\f4\i \cf13 round
+\f3\i0 \cf11 (\cf15 100.0 \cf11 * 
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 case when \cf11 email_count = \cf15 0 \cf9 then \cf15 1 \cf9 else \cf15 0 \cf9 end\cf11 ) / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 count
+\f3\i0 \cf11 (*),\cf15 0\cf11 ), \cf15 2\cf11 ) \cf9 as \cf11 "% of Companies without email"\
+\cf9 from \cf11 email_per_company;\
+\
+\
+\'97coverage based on source\
+\cf9 with \cf11 company_email_counts \cf9 as \cf11 (\
+    \cf9 select\
+        \cf11 p.\cf12 source\cf11 ,\
+        p.\cf12 id\cf11 ,\
+        
+\f4\i \cf13 count
+\f3\i0 \cf11 (e.\cf12 email\cf11 ) \cf9 as \cf11 email_count\
+    \cf9 from \cf11 zeus_bronze.brz_company_hub p\
+  \cf9 left join \cf11 zeus_bronze.brz_comp_emails e\
+    \cf9 on \cf11 p.\cf12 id \cf11 = e.\cf12 id\
+    \cf9 group by \cf11 p.\cf12 source\cf11 , p.\cf12 id\
+\cf11 )\
+\cf9 select\
+    \cf12 source\cf11 ,\
+    
+\f4\i \cf13 count
+\f3\i0 \cf11 (\cf9 distinct \cf12 id\cf11 ) \cf9 as \cf11 total_companies,\
+    
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 case when \cf11 email_count >= \cf15 1 \cf9 then \cf15 1 \cf9 else \cf15 0 \cf9 end\cf11 ) \cf9 as \cf11 companies_with_email,\
+    
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 case when \cf11 email_count = \cf15 0 \cf9 then \cf15 1 \cf9 else \cf15 0 \cf9 end\cf11 ) \cf9 as \cf11 companies_without_email,\
+    
+\f4\i \cf13 round
+\f3\i0 \cf11 (\cf15 100.0 \cf11 * 
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 case when \cf11 email_count >= \cf15 1 \cf9 then \cf15 1 \cf9 else \cf15 0 \cf9 end\cf11 ) / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 count
+\f3\i0 \cf11 (*),\cf15 0\cf11 ), \cf15 2\cf11 ) \cf9 as \cf11 pct_with_email,\
+    
+\f4\i \cf13 round
+\f3\i0 \cf11 (\cf15 100.0 \cf11 * 
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 case when \cf11 email_count = \cf15 0 \cf9 then \cf15 1 \cf9 else \cf15 0 \cf9 end\cf11 ) / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 count
+\f3\i0 \cf11 (*),\cf15 0\cf11 ), \cf15 2\cf11 ) \cf9 as \cf11 pct_without_email\
+\cf9 from \cf11 company_email_counts\
+\cf9 group by \cf12 source\
+\cf9 order by \cf12 source\cf11 ;\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+\
+This is the query . I need to check if the count in the above code for companies with email and % match\
+If it does not match I need to give insight  on why the change is happening\
+What is the possibility of this loss\
+\
+\
+For this the UI should have the following\
+1. A chart that shows the vendor name. Any vendor with pct_without_email >= 70 should be reached out for data\
+2. I only want the chart and insights in the UI. In the chart anything below 70 should be red other should be green\
+\
+\
+2. Status Code\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f3\fs26 \cf16 \cb8 WITH \cf7 base \cf16 AS \cf7 (\
+    \cf16 SELECT \cf17 status_code\
+    \cf16 FROM \cf7 zeus_bronze.brz_comp_domains\
+),\
+     total \cf16 AS \cf7 (\
+         \cf16 SELECT 
+\f4\i \cf18 COUNT
+\f3\i0 \cf7 (*)::\cf16 numeric AS \cf7 total_companies\
+         \cf16 FROM \cf7 base\
+     ),\
+     counts \cf16 AS \cf7 (\
+         \cf16 SELECT \cf19 'Status Code 200' \cf16 AS \cf7 status, 
+\f4\i \cf18 COUNT
+\f3\i0 \cf7 (*)::\cf16 numeric AS \cf7 company_count\
+         \cf16 FROM \cf7 base\
+         \cf16 WHERE \cf17 status_code \cf7 = \cf20 200\
+\
+         \cf16 UNION ALL\
+         SELECT \cf19 'Status Code not 200' \cf16 AS \cf7 status, 
+\f4\i \cf18 COUNT
+\f3\i0 \cf7 (*)::\cf16 numeric AS \cf7 company_count\
+         \cf16 FROM \cf7 base\
+         \cf16 WHERE \cf17 status_code \cf16 IS NOT NULL AND \cf17 status_code \cf7 <> \cf20 200\
+\
+         \cf16 UNION ALL\
+         SELECT \cf19 'Missing Status Code' \cf16 AS \cf7 status, 
+\f4\i \cf18 COUNT
+\f3\i0 \cf7 (*)::\cf16 numeric AS \cf7 company_count\
+         \cf16 FROM \cf7 base\
+         \cf16 WHERE \cf17 status_code \cf16 IS NULL\
+     \cf7 )\
+\cf16 SELECT\
+    \cf7 status \cf16 AS \cf7 "Status",\
+    company_count::\cf16 bigint AS \cf7 "Count of Companies",\
+    
+\f4\i \cf18 ROUND
+\f3\i0 \cf7 (company_count / 
+\f4\i \cf18 NULLIF
+\f3\i0 \cf7 (total.total_companies, \cf20 0\cf7 ) * \cf20 100\cf7 , \cf20 2\cf7 ) \cf16 AS \cf7 "% Of companies"\
+\cf16 FROM \cf7 counts\
+         \cf16 CROSS JOIN \cf7 total\
+\cf16 ORDER BY\
+    CASE \cf7 status\
+        \cf16 WHEN \cf19 'Status Code 200' \cf16 THEN \cf20 1\
+        \cf16 WHEN \cf19 'Status Code not 200' \cf16 THEN \cf20 2\
+        \cf16 ELSE \cf20 3\
+        \cf16 END\cf7 ;\
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f5\fs24 \cf0 \cb1 \expnd0\expndtw0\kerning0
+\
+\
+Give the table and give insight for those. \
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 3.) Proper email format coverage\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f3\fs26 \cf16 \cb8 \kerning1\expnd0\expndtw0 with \cf7 base \cf16 as \cf7 (\
+    \cf16 select\
+        
+\f4\i \cf18 regexp_replace
+\f3\i0 \cf7 (\
+                
+\f4\i \cf18 lower
+\f3\i0 \cf7 (
+\f4\i \cf18 trim
+\f3\i0 \cf7 (
+\f4\i \cf18 coalesce
+\f3\i0 \cf7 (\cf17 email\cf7 , \cf19 ''\cf7 ))),\
+                \cf19 '\cb22 [^a-z0-9@._%+\\-]\cb8 '\cf7 ,\
+                \cf19 ''\cf7 ,\
+                \cf19 'g'\
+        \cf7 ) \cf16 as \cf7 email_clean\
+    \cf16 from \cf7 zeus_bronze.brz_comp_emails\
+),\
+     classified \cf16 as \cf7 (\
+         \cf16 select\
+             \cf7 email_clean,\
+             \cf16 case\
+                 when \cf7 email_clean \cf16 is null or 
+\f4\i \cf18 trim
+\f3\i0 \cf7 (email_clean) = \cf19 '' \cf16 then \cf19 'empty'\
+                 \cf16 when \cf7 email_clean \cf16 not like \cf19 '%@%' \cf16 then \cf19 'invalid'\
+                 \cf16 when \cf7 email_clean !~ \cf19 '\cb22 ^[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]\{2,\}$\cb8 ' \cf16 then \cf19 'invalid'\
+                 \cf16 else \cf19 'valid'\
+                 \cf16 end as \cf7 "Format Status"\
+         \cf16 from \cf7 base\
+     )\
+\cf16 select\
+    \cf7 "Format Status",\
+    
+\f4\i \cf18 count
+\f3\i0 \cf7 (*) \cf16 as \cf7 "Count of Emails",\
+    
+\f4\i \cf18 round
+\f3\i0 \cf7 (\cf20 100.0 \cf7 * 
+\f4\i \cf18 count
+\f3\i0 \cf7 (*) / 
+\f4\i \cf18 nullif
+\f3\i0 \cf7 (
+\f4\i \cf18 sum
+\f3\i0 \cf7 (
+\f4\i \cf18 count
+\f3\i0 \cf7 (*)) \cf16 over \cf7 (),\cf20 0\cf7 ), \cf20 2\cf7 ) \cf16 as \cf7 "% of Emails"\
+\cf16 from \cf7 classified\
+\cf16 group by \cf7 "Format Status";\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf23 -- List of Examples for Format Status not valid\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf16 with \cf7 base \cf16 as \cf7 (\
+    \cf16 select\
+        
+\f4\i \cf18 regexp_replace
+\f3\i0 \cf7 (\
+                
+\f4\i \cf18 lower
+\f3\i0 \cf7 (
+\f4\i \cf18 trim
+\f3\i0 \cf7 (
+\f4\i \cf18 coalesce
+\f3\i0 \cf7 (\cf17 email\cf7 , \cf19 ''\cf7 ))),\
+                \cf19 '\cb22 [^a-z0-9@._%+\\-]\cb8 '\cf7 ,\
+                \cf19 ''\cf7 ,\
+                \cf19 'g'\
+        \cf7 ) \cf16 as \cf7 email_clean\
+    \cf16 from \cf7 zeus_bronze.brz_comp_emails\
+),\
+     classified \cf16 as \cf7 (\
+         \cf16 select\
+             \cf7 email_clean,\
+             \cf16 case\
+                 when \cf7 email_clean \cf16 is null or 
+\f4\i \cf18 trim
+\f3\i0 \cf7 (email_clean) = \cf19 '' \cf16 then \cf19 'empty'\
+                 \cf16 when \cf7 email_clean \cf16 not like \cf19 '%@%' \cf16 then \cf19 'invalid'\
+                 \cf16 when \cf7 email_clean !~ \cf19 '\cb22 ^[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]\{2,\}$\cb8 ' \cf16 then \cf19 'invalid'\
+                 \cf16 else \cf19 'valid'\
+                 \cf16 end as \cf7 "Format Status"\
+         \cf16 from \cf7 base)\
+\cf16 select \cf7 email_clean \cf16 as \cf7 "Emails" \cf16 from \cf7 classified\
+\cf16 where \cf7 "Format Status" = \cf19 'invalid'\
+\cf16 limit \cf20 20\cf7 ;\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f5\fs24 \cf0 \cb1 \expnd0\expndtw0\kerning0
+\
+\
+Insight that shows the for companies having email these % of companies have a proper email format.\
+This is due to addition of special characters or also masked emails in the email column. Add this as an insight\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 \
+\
+4. Duplicate emails\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f3\fs26 \cf24 \cb10 -- List duplicate emails\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf9 with \cf11 base \cf9 as \cf11 (\
+    \cf9 select\
+        
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (\
+                
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (\cf12 email\cf11 ,\cf14 ''\cf11 ))),\
+                \cf14 '\cb25 [^a-z0-9@._%+\\-]\cb10 '\cf11 ,\
+                \cf14 ''\cf11 ,\
+                \cf14 'g'\
+        \cf11 ) \cf9 as \cf11 email_clean\
+    \cf9 from \cf11 zeus_bronze.brz_comp_emails\
+    \cf9 where \cf12 email \cf9 is not null\
+      and 
+\f4\i \cf13 trim
+\f3\i0 \cf11 (\cf12 email\cf11 ) <> \cf14 ''\
+\cf11 ),\
+     \cf9 valid as \cf11 (\
+         \cf9 select \cf11 *\
+         \cf9 from \cf11 base\
+         \cf9 where \cf11 email_clean \cf9 like \cf14 '%@%'\
+           \cf9 and \cf11 email_clean ~ \cf14 '\cb25 ^[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]\{2,\}$\cb10 '\
+     \cf11 )\
+\cf9 select\
+    \cf11 email_clean,\
+    
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) \cf9 as \cf11 occurrences\
+\cf9 from valid\
+group by \cf11 email_clean\
+\cf9 having 
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) > \cf15 1\
+\cf9 order by \cf11 occurrences \cf9 desc\
+limit \cf15 20\cf11 ;\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf24 -- Count + % of duplicate emails\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf9 with \cf11 base \cf9 as \cf11 (\
+    \cf9 select\
+        \cf12 id \cf9 as \cf11 firmable_id,\
+        \cf12 country\cf11 ,\
+        
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (\
+                
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (\cf12 email\cf11 ,\cf14 ''\cf11 ))),\
+                \cf14 '\cb25 [^a-z0-9@._%+\\-]\cb10 '\cf11 ,\
+                \cf14 ''\cf11 ,\
+                \cf14 'g'\
+        \cf11 ) \cf9 as \cf11 email_clean\
+    \cf9 from \cf11 zeus_bronze.brz_comp_emails\
+    \cf9 where \cf12 email \cf9 is not null\
+      and 
+\f4\i \cf13 trim
+\f3\i0 \cf11 (\cf12 email\cf11 ) <> \cf14 ''\
+\cf11 ),\
+     \cf9 valid as \cf11 (\
+         \cf9 select \cf11 *\
+         \cf9 from \cf11 base\
+         \cf9 where \cf11 email_clean \cf9 like \cf14 '%@%'\
+           \cf9 and \cf11 email_clean ~ \cf14 '\cb25 ^[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]\{2,\}$\cb10 '\
+     \cf11 ),\
+     email_counts \cf9 as \cf11 (\
+         \cf9 select\
+             \cf11 firmable_id,\
+             \cf12 country\cf11 ,\
+             email_clean,\
+             
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) \cf9 as \cf11 occurrences\
+         \cf9 from valid\
+         group by \cf12 1\cf11 ,\cf12 2\cf11 ,\cf12 3\
+     \cf11 ),\
+     \cf9 summary as \cf11 (\
+         \cf9 select\
+             
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) \cf9 as \cf11 total_email,\
+             
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) \cf9 filter \cf11 (\cf9 where \cf11 occurrences = \cf15 1\cf11 ) \cf9 as \cf11 unique_email,\
+             
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) \cf9 filter \cf11 (\cf9 where \cf11 occurrences > \cf15 1\cf11 ) \cf9 as \cf11 duplicate_email\
+         \cf9 from \cf11 email_counts\
+     )\
+\cf9 select\
+    \cf11 total_email,\
+    unique_email,\
+    duplicate_email,\
+    
+\f4\i \cf13 round
+\f3\i0 \cf11 (duplicate_email * \cf15 100.0 \cf11 / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (total_email, \cf15 0\cf11 ), \cf15 2\cf11 ) \cf9 as \cf11 duplicate_percentage\
+\cf9 from summary\cf11 ;\
+\
+\
+\'97List of Dupluicate by bucket\
+\cf9 with \cf11 base \cf9 as \cf11 (\
+    \cf9 select\
+        \cf12 id \cf9 as \cf11 firmable_id,\
+        
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (\
+                
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (\cf12 email\cf11 ,\cf14 ''\cf11 ))),\
+                \cf14 '\cb25 [^a-z0-9@._%+\\-]\cb10 '\cf11 ,\
+                \cf14 ''\cf11 ,\
+                \cf14 'g'\
+        \cf11 ) \cf9 as \cf11 email_clean\
+    \cf9 from \cf11 zeus_bronze.brz_comp_emails\
+    \cf9 where \cf12 email \cf9 is not null\
+      and 
+\f4\i \cf13 trim
+\f3\i0 \cf11 (\cf12 email\cf11 ) <> \cf14 ''\
+\cf11 ),\
+     \cf9 valid as \cf11 (\
+         \cf9 select \cf11 *\
+         \cf9 from \cf11 base\
+         \cf9 where \cf11 email_clean \cf9 like \cf14 '%@%'\
+           \cf9 and \cf11 email_clean ~ \cf14 '\cb25 ^[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]\{2,\}$\cb10 '\
+     \cf11 ),\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf24 -- how many times each email appears overall\
+     \cf11 email_occurrences \cf9 as \cf11 (\
+         \cf9 select\
+             \cf11 email_clean,\
+             
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) \cf9 as \cf11 occurrences\
+         \cf9 from valid\
+         group by \cf12 1\
+         \cf9 having 
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) > \cf15 1\
+     \cf11 ),\
+\cf24 -- attach occurrence count back to each company-email row (only dupes)\
+     \cf11 company_email_dupes \cf9 as \cf11 (\
+         \cf9 select\
+             \cf11 v.firmable_id,\
+             eo.email_clean,\
+             eo.occurrences\
+         \cf9 from valid \cf11 v\
+                  \cf9 join \cf11 email_occurrences eo\
+                       \cf9 on \cf11 v.email_clean = eo.email_clean\
+     ),\
+     bucketed \cf9 as \cf11 (\
+         \cf9 select\
+             \cf11 firmable_id,\
+             email_clean,\
+             occurrences,\
+             \cf9 case\
+                 when \cf11 occurrences < \cf15 50 \cf9 then \cf14 '<50'\
+                 \cf9 when \cf11 occurrences \cf9 between \cf15 50 \cf9 and \cf15 100 \cf9 then \cf14 '50-100'\
+                 \cf9 when \cf11 occurrences \cf9 between \cf15 101 \cf9 and \cf15 250 \cf9 then \cf14 '101-250'\
+                 \cf9 when \cf11 occurrences \cf9 between \cf15 251 \cf9 and \cf15 300 \cf9 then \cf14 '251-300'\
+                 \cf9 else \cf14 '>300'\
+                 \cf9 end as \cf11 occ_bucket\
+         \cf9 from \cf11 company_email_dupes\
+     ),\
+\cf24 -- total distinct companies in the whole dataset (denominator for %)\
+     \cf11 total_companies \cf9 as \cf11 (\
+         \cf9 select 
+\f4\i \cf13 count
+\f3\i0 \cf11 (\cf9 distinct \cf11 firmable_id) \cf9 as \cf11 total_companies\
+         \cf9 from valid\
+     \cf11 ),\
+\cf24 -- per bucket:\
+-- 1) count of duplicate emails in bucket (unique email_clean)\
+-- 2) count of impacted companies in bucket (distinct firmable_id)\
+     \cf11 bucket_stats \cf9 as \cf11 (\
+         \cf9 select\
+             \cf11 occ_bucket,\
+             
+\f4\i \cf13 count
+\f3\i0 \cf11 (\cf9 distinct \cf11 email_clean) \cf9 as \cf11 duplicate_email_count,\
+             
+\f4\i \cf13 count
+\f3\i0 \cf11 (\cf9 distinct \cf11 firmable_id) \cf9 as \cf11 companies_in_bucket\
+         \cf9 from \cf11 bucketed\
+         \cf9 group by \cf12 1\
+     \cf11 )\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf9 select\
+    \cf11 bs.occ_bucket,\
+    bs.duplicate_email_count,\
+    bs.companies_in_bucket,\
+    
+\f4\i \cf13 round
+\f3\i0 \cf11 (\
+            bs.companies_in_bucket * \cf15 100.0 \cf11 / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (tc.total_companies, \cf15 0\cf11 ),\
+            \cf15 2\
+    \cf11 ) \cf9 as \cf11 pct_of_companies\
+\cf9 from \cf11 bucket_stats bs\
+         \cf9 cross join \cf11 total_companies tc\
+\cf9 order by\
+    case \cf11 bs.occ_bucket\
+        \cf9 when \cf14 '<50' \cf9 then \cf15 1\
+        \cf9 when \cf14 '50-100' \cf9 then \cf15 2\
+        \cf9 when \cf14 '101-250' \cf9 then \cf15 3\
+        \cf9 when \cf14 '251-300' \cf9 then \cf15 4\
+        \cf9 when \cf14 '>300' \cf9 then \cf15 5\
+        \cf9 else \cf15 99\
+        \cf9 end\cf11 ;\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+\
+\
+In this I want a table to show the top duplicate emails lets say top 20 that needs to be checked .\
+And also do a count(*) to show them the unique duplicate email count\
+And give an insight that there are so and so duplicate emails\
+\
+
+\f5 \expnd0\expndtw0\kerning0
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+5) Domain match rate between company domain and email domain\
+\pard\pardeftab720\partightenfactor0
+\cf0 \outl0\strokewidth0 \strokec21 Company-level domain match rate (ANY email, country-aware)
+\f3\fs26 \cf9 \cb10 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+
+\f5\fs24 \cf0 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec21 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f3\fs26 \cf24 \cb10 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 -- Country-level view\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf9 WITH \cf11 company \cf9 AS \cf11 (\
+    \cf9 SELECT\
+        h\cf11 .\cf12 id\cf11 ,\
+        \cf9 h\cf11 .\cf12 name\cf11 ,\
+\
+        
+\f4\i \cf13 lower
+\f3\i0 \cf11 (\
+                
+\f4\i \cf13 trim
+\f3\i0 \cf11 (\
+                        
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (\
+                                
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (\
+                                        
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (\cf9 h\cf11 .\cf12 fqdn\cf11 , \cf14 ''\cf11 ), \cf14 '\cb25 ^https?://\cb10 '\cf11 , \cf14 ''\cf11 , \cf14 'i'\cf11 ),\
+                                        \cf14 '\cb25 /.*$\cb10 '\cf11 ,\
+                                        \cf14 ''\cf11 ,\
+                                        \cf14 'g'\
+                                \cf11 ),\
+                                \cf14 '\cb25 ^www\\.\cb10 '\cf11 ,\
+                                \cf14 ''\cf11 ,\
+                                \cf14 'i'\
+                        \cf11 )\
+                )\
+        ) \cf9 AS \cf11 company_domain,\
+\
+        
+\f4\i \cf13 split_part
+\f3\i0 \cf11 (\
+                
+\f4\i \cf13 lower
+\f3\i0 \cf11 (\
+                        
+\f4\i \cf13 trim
+\f3\i0 \cf11 (\
+                                
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (\
+                                        
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (\
+                                                
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (\cf9 h\cf11 .\cf12 fqdn\cf11 , \cf14 ''\cf11 ), \cf14 '\cb25 ^https?://\cb10 '\cf11 , \cf14 ''\cf11 , \cf14 'i'\cf11 ),\
+                                                \cf14 '\cb25 /.*$\cb10 '\cf11 ,\
+                                                \cf14 ''\cf11 ,\
+                                                \cf14 'g'\
+                                        \cf11 ),\
+                                        \cf14 '\cb25 ^www\\.\cb10 '\cf11 ,\
+                                        \cf14 ''\cf11 ,\
+                                        \cf14 'i'\
+                                \cf11 )\
+                        )\
+                ),\
+                \cf14 '.'\cf11 ,\
+                \cf15 1\
+        \cf11 ) \cf9 AS \cf11 company_root,\
+\
+        
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (\cf9 h\cf11 .\cf12 name\cf11 , \cf14 ''\cf11 ), \cf14 '\cb25 [^a-z0-9]+\cb10 '\cf11 , \cf14 ''\cf11 , \cf14 'g'\cf11 )) \cf9 AS \cf11 company_name_clean\
+    \cf9 FROM \cf11 zeus_bronze.brz_company_hub \cf9 h\
+    WHERE 
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (\cf9 h\cf11 .\cf12 fqdn\cf11 ), \cf14 ''\cf11 ) <> \cf14 ''\
+      \cf9 AND h\cf11 .\cf12 fqdn \cf9 LIKE \cf14 '%.%'\
+\cf11 ),\
+\
+     emails \cf9 AS \cf11 (\
+         \cf9 SELECT\
+             \cf11 e.\cf12 id\cf11 ,\
+             e.\cf12 country\cf11 ,\
+             
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (e.\cf12 email\cf11 )) \cf9 AS \cf11 email,\
+             
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (
+\f4\i \cf13 split_part
+\f3\i0 \cf11 (e.\cf12 email\cf11 , \cf14 '@'\cf11 , \cf15 1\cf11 ))) \cf9 AS \cf11 local_part,\
+             
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (
+\f4\i \cf13 split_part
+\f3\i0 \cf11 (e.\cf12 email\cf11 , \cf14 '@'\cf11 , \cf15 2\cf11 ))) \cf9 AS \cf11 email_domain,\
+             
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (
+\f4\i \cf13 split_part
+\f3\i0 \cf11 (e.\cf12 email\cf11 , \cf14 '@'\cf11 , \cf15 1\cf11 ), \cf14 '\cb25 [^a-z0-9]+\cb10 '\cf11 , \cf14 ''\cf11 , \cf14 'g'\cf11 )) \cf9 AS \cf11 local_part_clean\
+         \cf9 FROM \cf11 zeus_bronze.brz_comp_emails e\
+         \cf9 WHERE \cf11 e.\cf12 email \cf9 IS NOT NULL\
+           AND 
+\f4\i \cf13 trim
+\f3\i0 \cf11 (e.\cf12 email\cf11 ) <> \cf14 ''\
+           \cf9 AND \cf11 e.\cf12 email \cf9 LIKE \cf14 '%@%'\
+     \cf11 ),\
+\
+     email_eval \cf9 AS \cf11 (\
+         \cf9 SELECT\
+             c\cf11 .\cf12 id\cf11 ,\
+             e.\cf12 country\cf11 ,\
+             (\
+                 e.email_domain = \cf9 c\cf11 .company_domain\
+                     \cf9 OR \cf11 e.email_domain \cf9 LIKE \cf14 '%.' \cf11 || \cf9 c\cf11 .company_domain\
+                     \cf9 OR c\cf11 .company_domain \cf9 LIKE \cf14 '%.' \cf11 || e.email_domain\
+                     \cf9 OR \cf11 (\cf9 c\cf11 .company_root <> \cf14 '' \cf9 AND \cf11 e.email_domain \cf9 LIKE \cf14 '%' \cf11 || \cf9 c\cf11 .company_root || \cf14 '%'\cf11 )\
+                     \cf9 OR \cf11 (\cf9 c\cf11 .company_root <> \cf14 '' \cf9 AND \cf11 e.local_part \cf9 LIKE \cf14 '%' \cf11 || \cf9 c\cf11 .company_root || \cf14 '%'\cf11 )\
+                     \cf9 OR \cf11 (\
+                     \cf9 c\cf11 .company_name_clean <> \cf14 ''\
+                         \cf9 AND 
+\f4\i \cf13 length
+\f3\i0 \cf11 (\cf9 c\cf11 .company_name_clean) >= \cf15 4\
+                         \cf9 AND \cf11 e.local_part_clean \cf9 LIKE \cf14 '%' \cf11 || \cf9 c\cf11 .company_name_clean || \cf14 '%'\
+                     \cf11 )\
+                 ) \cf9 AS \cf11 is_valid_email\
+         \cf9 FROM \cf11 company \cf9 c\
+                  JOIN \cf11 emails e\
+                       \cf9 ON \cf11 e.\cf12 id \cf11 = \cf9 c\cf11 .\cf12 id\
+     \cf11 ),\
+\
+     company_status \cf9 AS \cf11 (\
+         \cf24 -- company is valid per (company, country) if ANY email is valid\
+         \cf9 SELECT\
+             \cf12 id\cf11 ,\
+             \cf12 country\cf11 ,\
+             
+\f4\i \cf13 bool_or
+\f3\i0 \cf11 (is_valid_email) \cf9 AS \cf11 has_any_valid_email\
+         \cf9 FROM \cf11 email_eval\
+         \cf9 GROUP BY \cf12 id\cf11 , \cf12 country\
+     \cf11 ),\
+\
+     overall \cf9 AS \cf11 (\
+         \cf9 SELECT\
+             \cf15 0 \cf9 AS \cf11 sort_key,\
+             \cf14 'ALL'\cf11 ::\cf9 text AS \cf11 country,\
+             
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) \cf9 AS \cf11 total_companies,\
+             
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN \cf11 has_any_valid_email \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) \cf9 AS \cf11 companies_valid,\
+             
+\f4\i \cf13 round
+\f3\i0 \cf11 (\
+                     \cf15 100.0 \cf11 * 
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN \cf11 has_any_valid_email \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 count
+\f3\i0 \cf11 (*), \cf15 0\cf11 ),\
+                     \cf15 2\
+             \cf11 ) \cf9 AS \cf11 pct_companies_valid,\
+             
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN NOT \cf11 has_any_valid_email \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) \cf9 AS \cf11 companies_invalid,\
+             
+\f4\i \cf13 round
+\f3\i0 \cf11 (\
+                     \cf15 100.0 \cf11 * 
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN NOT \cf11 has_any_valid_email \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 count
+\f3\i0 \cf11 (*), \cf15 0\cf11 ),\
+                     \cf15 2\
+             \cf11 ) \cf9 AS \cf11 pct_companies_invalid\
+         \cf9 FROM \cf11 company_status\
+     ),\
+\
+     by_country \cf9 AS \cf11 (\
+         \cf9 SELECT\
+             \cf15 1 \cf9 AS \cf11 sort_key,\
+             \cf12 country\cf11 ,\
+             
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) \cf9 AS \cf11 total_companies,\
+             
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN \cf11 has_any_valid_email \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) \cf9 AS \cf11 companies_valid,\
+             
+\f4\i \cf13 round
+\f3\i0 \cf11 (\
+                     \cf15 100.0 \cf11 * 
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN \cf11 has_any_valid_email \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 count
+\f3\i0 \cf11 (*), \cf15 0\cf11 ),\
+                     \cf15 2\
+             \cf11 ) \cf9 AS \cf11 pct_companies_valid,\
+             
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN NOT \cf11 has_any_valid_email \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) \cf9 AS \cf11 companies_invalid,\
+             
+\f4\i \cf13 round
+\f3\i0 \cf11 (\
+                     \cf15 100.0 \cf11 * 
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN NOT \cf11 has_any_valid_email \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 count
+\f3\i0 \cf11 (*), \cf15 0\cf11 ),\
+                     \cf15 2\
+             \cf11 ) \cf9 AS \cf11 pct_companies_invalid\
+         \cf9 FROM \cf11 company_status\
+         \cf9 GROUP BY \cf12 country\
+     \cf11 )\
+\
+\cf9 SELECT\
+    \cf11 country,\
+    total_companies,\
+    companies_valid,\
+    pct_companies_valid,\
+    companies_invalid,\
+    pct_companies_invalid\
+\cf9 FROM \cf11 (\
+         \cf9 SELECT \cf11 * \cf9 FROM \cf11 overall\
+         \cf9 UNION ALL\
+         SELECT \cf11 * \cf9 FROM \cf11 by_country\
+     ) u\
+\cf9 ORDER BY\
+    \cf11 sort_key,\
+    total_companies \cf9 DESC\cf11 ,\
+    country;\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f5\fs24 \cf0 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec21 \
+\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec21 A company should be 
+\f6\b ignored (excluded)
+\f5\b0  if it has 
+\f6\b ANY
+\f5\b0  email where 
+\f6\b either
+\f5\b0 :\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls1\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec21 the 
+\f6\b email domain matches
+\f5\b0  the company domain (including subdomains), 
+\f6\b OR
+\f5\b0 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec21 the 
+\f6\b local-part
+\f5\b0  (the part 
+\f6\b before 
+\f7\fs26 @
+\f5\b0\fs24 ) contains the 
+\f6\b company root
+\f5\b0  (first label of the company domain)\
+\pard\pardeftab720\partightenfactor0
+\cf0 \strokec21 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f3\fs26 \cf9 \cb10 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 WITH \cf11 company \cf9 AS \cf11 (\
+    \cf9 SELECT\
+        h\cf11 .\cf12 id\cf11 ,\
+        \cf9 h\cf11 .\cf12 name\cf11 ,\
+\
+        \cf24 -- Strong normalization: strip protocol, strip path, strip leading www., lowercase/trim\
+        
+\f4\i \cf13 lower
+\f3\i0 \cf11 (\
+                
+\f4\i \cf13 trim
+\f3\i0 \cf11 (\
+                        
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (\
+                                
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (\
+                                        
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (\cf9 h\cf11 .\cf12 fqdn\cf11 , \cf14 ''\cf11 ), \cf14 '\cb25 ^https?://\cb10 '\cf11 , \cf14 ''\cf11 , \cf14 'i'\cf11 ),\
+                                        \cf14 '\cb25 /.*$\cb10 '\cf11 ,\
+                                        \cf14 ''\cf11 ,\
+                                        \cf14 'g'\
+                                \cf11 ),\
+                                \cf14 '\cb25 ^www\\.\cb10 '\cf11 ,\
+                                \cf14 ''\cf11 ,\
+                                \cf14 'i'\
+                        \cf11 )\
+                )\
+        ) \cf9 AS \cf11 company_domain,\
+\
+        \cf24 -- Root from the normalized domain\
+        
+\f4\i \cf13 split_part
+\f3\i0 \cf11 (\
+                
+\f4\i \cf13 lower
+\f3\i0 \cf11 (\
+                        
+\f4\i \cf13 trim
+\f3\i0 \cf11 (\
+                                
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (\
+                                        
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (\
+                                                
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (\cf9 h\cf11 .\cf12 fqdn\cf11 , \cf14 ''\cf11 ), \cf14 '\cb25 ^https?://\cb10 '\cf11 , \cf14 ''\cf11 , \cf14 'i'\cf11 ),\
+                                                \cf14 '\cb25 /.*$\cb10 '\cf11 ,\
+                                                \cf14 ''\cf11 ,\
+                                                \cf14 'g'\
+                                        \cf11 ),\
+                                        \cf14 '\cb25 ^www\\.\cb10 '\cf11 ,\
+                                        \cf14 ''\cf11 ,\
+                                        \cf14 'i'\
+                                \cf11 )\
+                        )\
+                ),\
+                \cf14 '.'\cf11 ,\
+                \cf15 1\
+        \cf11 ) \cf9 AS \cf11 company_root,\
+\
+        \cf24 -- Cleaned company name (for local-part matching), lower + alnum only\
+        
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (\cf9 h\cf11 .\cf12 name\cf11 , \cf14 ''\cf11 ), \cf14 '\cb25 [^a-z0-9]+\cb10 '\cf11 , \cf14 ''\cf11 , \cf14 'g'\cf11 )) \cf9 AS \cf11 company_name_clean\
+    \cf9 FROM \cf11 zeus_bronze.brz_company_hub \cf9 h\
+    WHERE 
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (\cf9 h\cf11 .\cf12 fqdn\cf11 ), \cf14 ''\cf11 ) <> \cf14 ''\
+      \cf9 AND h\cf11 .\cf12 fqdn \cf9 LIKE \cf14 '%.%'\
+\cf11 ),\
+\
+     emails \cf9 AS \cf11 (\
+         \cf9 SELECT\
+             \cf11 e.\cf12 id\cf11 ,\
+             
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (e.\cf12 email\cf11 )) \cf9 AS \cf11 email,\
+             
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (
+\f4\i \cf13 split_part
+\f3\i0 \cf11 (e.\cf12 email\cf11 , \cf14 '@'\cf11 , \cf15 1\cf11 ))) \cf9 AS \cf11 local_part,\
+             
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (
+\f4\i \cf13 split_part
+\f3\i0 \cf11 (e.\cf12 email\cf11 , \cf14 '@'\cf11 , \cf15 2\cf11 ))) \cf9 AS \cf11 email_domain,\
+             
+\f4\i \cf13 lower
+\f3\i0 \cf11 (
+\f4\i \cf13 regexp_replace
+\f3\i0 \cf11 (
+\f4\i \cf13 split_part
+\f3\i0 \cf11 (e.\cf12 email\cf11 , \cf14 '@'\cf11 , \cf15 1\cf11 ), \cf14 '\cb25 [^a-z0-9]+\cb10 '\cf11 , \cf14 ''\cf11 , \cf14 'g'\cf11 )) \cf9 AS \cf11 local_part_clean\
+         \cf9 FROM \cf11 zeus_bronze.brz_comp_emails e\
+         \cf9 WHERE \cf11 e.\cf12 email \cf9 IS NOT NULL\
+           AND 
+\f4\i \cf13 trim
+\f3\i0 \cf11 (e.\cf12 email\cf11 ) <> \cf14 ''\
+           \cf9 AND \cf11 e.\cf12 email \cf9 LIKE \cf14 '%@%'\
+     \cf11 ),\
+\
+     email_eval \cf9 AS \cf11 (\
+         \cf9 SELECT\
+             c\cf11 .\cf12 id\cf11 ,\
+             \cf9 c\cf11 .\cf12 name\cf11 ,\
+             \cf9 c\cf11 .company_domain,\
+             e.email,\
+\
+             (\
+                 \cf24 -- 1) DOMAIN match: exact / email is subdomain of company / company is subdomain of email\
+                 \cf11 e.email_domain = \cf9 c\cf11 .company_domain\
+                     \cf9 OR \cf11 e.email_domain \cf9 LIKE \cf14 '%.' \cf11 || \cf9 c\cf11 .company_domain\
+                     \cf9 OR c\cf11 .company_domain \cf9 LIKE \cf14 '%.' \cf11 || e.email_domain\
+\
+                     \cf24 -- 2) BRAND/root appears in email domain (fixes ANZ-like cases: anz.com.au vs anz.com)\
+                     \cf9 OR \cf11 (\cf9 c\cf11 .company_root <> \cf14 '' \cf9 AND \cf11 e.email_domain \cf9 LIKE \cf14 '%' \cf11 || \cf9 c\cf11 .company_root || \cf14 '%'\cf11 )\
+\
+                     \cf24 -- 3) LOCAL PART contains company root (location + brand patterns, etc.)\
+                     \cf9 OR \cf11 (\cf9 c\cf11 .company_root <> \cf14 '' \cf9 AND \cf11 e.local_part \cf9 LIKE \cf14 '%' \cf11 || \cf9 c\cf11 .company_root || \cf14 '%'\cf11 )\
+\
+                     \cf24 -- 4) LOCAL PART contains cleaned company name (works for longer names, e.g., baanthaimassage)\
+                     \cf9 OR \cf11 (\
+                     \cf9 c\cf11 .company_name_clean <> \cf14 ''\
+                         \cf9 AND 
+\f4\i \cf13 length
+\f3\i0 \cf11 (\cf9 c\cf11 .company_name_clean) >= \cf15 4          \cf24 -- avoid over-matching tiny names like "ANZ"\
+                         \cf9 AND \cf11 e.local_part_clean \cf9 LIKE \cf14 '%' \cf11 || \cf9 c\cf11 .company_name_clean || \cf14 '%'\
+                     \cf11 )\
+                 ) \cf9 AS \cf11 is_valid_email\
+         \cf9 FROM \cf11 company \cf9 c\
+                  JOIN \cf11 emails e\
+                       \cf9 ON \cf11 e.\cf12 id \cf11 = \cf9 c\cf11 .\cf12 id\
+     \cf11 ),\
+\
+     company_rollup \cf9 AS \cf11 (\
+         \cf9 SELECT\
+             \cf12 id\cf11 ,\
+             
+\f4\i \cf13 COUNT
+\f3\i0 \cf11 (*) \cf9 AS \cf11 total_emails,\
+             
+\f4\i \cf13 COUNT
+\f3\i0 \cf11 (*) \cf9 FILTER \cf11 (\cf9 WHERE \cf11 is_valid_email) \cf9 AS \cf11 valid_emails,\
+             
+\f4\i \cf13 COUNT
+\f3\i0 \cf11 (*) \cf9 FILTER \cf11 (\cf9 WHERE NOT \cf11 is_valid_email) \cf9 AS \cf11 invalid_emails,\
+             
+\f4\i \cf13 bool_or
+\f3\i0 \cf11 (is_valid_email) \cf9 AS \cf11 has_any_valid_email\
+         \cf9 FROM \cf11 email_eval\
+         \cf9 GROUP BY \cf12 id\
+     \cf11 ),\
+\
+     final \cf9 AS \cf11 (\
+         \cf9 SELECT\
+             \cf11 ee.\cf12 id\cf11 ,\
+             ee.\cf12 name\cf11 ,\
+             ee.company_domain,\
+             cr.total_emails,\
+             cr.valid_emails,\
+             cr.invalid_emails,\
+\
+             \cf24 -- If the company has ANY valid email, show valid list; invalid list is still useful for review\
+             
+\f4\i \cf13 string_agg
+\f3\i0 \cf11 (\cf9 CASE WHEN \cf11 ee.is_valid_email \cf9 THEN \cf11 ee.email \cf9 END\cf11 , \cf14 ', ' \cf9 ORDER BY \cf11 ee.email)\
+             \cf9 FILTER \cf11 (\cf9 WHERE \cf11 ee.is_valid_email) \cf9 AS \cf11 valid_emails_list,\
+\
+             
+\f4\i \cf13 string_agg
+\f3\i0 \cf11 (\cf9 CASE WHEN NOT \cf11 ee.is_valid_email \cf9 THEN \cf11 ee.email \cf9 END\cf11 , \cf14 ', ' \cf9 ORDER BY \cf11 ee.email)\
+             \cf9 FILTER \cf11 (\cf9 WHERE NOT \cf11 ee.is_valid_email) \cf9 AS \cf11 invalid_emails_list,\
+\
+             \cf9 CASE WHEN \cf11 cr.has_any_valid_email \cf9 THEN \cf14 'VALID' \cf9 ELSE \cf14 'INVALID' \cf9 END AS \cf11 company_email_status\
+         \cf9 FROM \cf11 email_eval ee\
+                  \cf9 JOIN \cf11 company_rollup cr\
+                       \cf9 ON \cf11 ee.\cf12 id \cf11 = cr.\cf12 id\
+         \cf9 GROUP BY\
+             \cf11 ee.\cf12 id\cf11 , ee.\cf12 name\cf11 , ee.company_domain,\
+             cr.total_emails, cr.valid_emails, cr.invalid_emails, cr.has_any_valid_email\
+     )\
+\
+\cf9 SELECT \cf11 *\
+\cf9 FROM \cf11 final\
+\cf9 ORDER BY \cf11 total_emails \cf9 DESC\
+LIMIT \cf15 20\cf11 ;\
+\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f5\fs24 \cf0 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec21 \
+
+\f3\fs26 \cf7 \cb8 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\pard\pardeftab720\partightenfactor0
+
+\f5\fs24 \cf0 \cb1 \expnd0\expndtw0\kerning0
+\
+\
+To show % that the company domain and email domain match as insight. \
+Ways to increase domain match. These are the insights I was able to find and rephrase those and add it\
+For smaller companies we can include free mails as domains\
+For larger companies and for people working at different companies they might not match the domain\
+The mapping for person and company has certain things to change which would create a great impact on the domain match\
+There might be orphan companies for which we might not be able to match to the specific domain or companies\
+Could be due to duplicate companies\
+There are possibilities were the company name and the domain do not match\
+\
+\
+\
+6) Blocked \'93no-reply\'94 type emails\
+with base as (\
+  select\
+    regexp_replace(\
+      lower(trim(coalesce(email, ''))),\
+      '[^a-z0-9@._%+\\-]',\
+      '',\
+      'g'\
+    ) as email_clean\
+  from zeus_bronze.brz_comp_emails\
+  where email is not null and trim(email) <> ''\
+),\
+valid as (\
+  select *\
+  from base\
+  where email_clean like '%@%'\
+    and email_clean ~ '^[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]\{2,\}$'\
+),\
+classified as (\
+  select\
+    *,\
+    case\
+      when email_clean ~ '^(no-reply|noreply|do-not-reply|donotreply)@' then 1\
+      else 0\
+    end as is_blocked\
+  from valid\
+)\
+select\
+  count(*) as total_valid_emails,\
+  sum(is_blocked) as blocked_emails,\
+  round(100.0 * sum(is_blocked) / nullif(count(*),0), 2) as pct_blocked\
+from classified;\
+\
+\
+\
+These are blocked emails as mentioned in the query like no reply and so on\
+Give % and insight that needs to be removed immediately\
+\
+7. Deliverability status\
+    WITH base AS (\
+      SELECT verification_status\
+      FROM zeus_bronze.brz_comp_emails\
+    ),\
+    totals AS (\
+      SELECT COUNT(*) AS total_rows FROM base\
+    )\
+    SELECT\
+      COALESCE(verification_status, 'NULL') AS verification_status,\
+      COUNT(*) AS row_count,\
+      ROUND(COUNT(*)::numeric / NULLIF(totals.total_rows,0) * 100, 2) AS pct\
+    FROM base\
+    CROSS JOIN totals\
+    GROUP BY COALESCE(verification_status, 'NULL'), totals.total_rows\
+    ORDER BY row_count DESC;\
+    \
+\
+Give the table outout and insight for this accordingly\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0 \cf0 \kerning1\expnd0\expndtw0 8. Companies with >= 5 emails\
+\
+with per_company_country as (\
+  select\
+    e.id,\
+    coalesce(nullif(trim(e.country), ''), 'UNKNOWN') as country,\
+    count(*) filter (where e.email is not null and trim(e.email) <> '') as email_count\
+  from zeus_bronze.brz_comp_emails e\
+  group by e.id, coalesce(nullif(trim(e.country), ''), 'UNKNOWN')\
+),\
+country_rollup as (\
+  select\
+    country,\
+    count(*) as company_country_pairs,\
+    sum(case when email_count > 5 then 1 else 0 end) as company_country_pairs_gt5\
+  from per_company_country\
+  group by country\
+)\
+select\
+  country,\
+  company_country_pairs as total_company_country,\
+  company_country_pairs_gt5 as companies_gt5_emails,\
+  round(100.0 * company_country_pairs_gt5 / nullif(company_country_pairs,0), 2) as pct_companies_gt5_emails\
+from country_rollup\
+order by total_company_country desc;\
+\
+\
+Company wise subcategory\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f3\fs26 \cf9 \cb10 WITH \cf11 per_company_country \cf9 AS \cf11 (\
+    \cf9 SELECT\
+        \cf11 e.\cf12 id\cf11 ,\
+        
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (e.\cf12 country\cf11 ), \cf14 ''\cf11 ), \cf14 'UNKNOWN'\cf11 ) \cf9 AS \cf11 country,\
+        
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) \cf9 FILTER \cf11 (\cf9 WHERE \cf11 e.\cf12 email \cf9 IS NOT NULL AND 
+\f4\i \cf13 trim
+\f3\i0 \cf11 (e.\cf12 email\cf11 ) <> \cf14 ''\cf11 ) \cf9 AS \cf11 email_count\
+    \cf9 FROM \cf11 zeus_bronze.brz_comp_emails e\
+    \cf9 GROUP BY\
+        \cf11 e.\cf12 id\cf11 ,\
+        
+\f4\i \cf13 coalesce
+\f3\i0 \cf11 (
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 trim
+\f3\i0 \cf11 (e.\cf12 country\cf11 ), \cf14 ''\cf11 ), \cf14 'UNKNOWN'\cf11 )\
+),\
+\
+     country_rollup \cf9 AS \cf11 (\
+         \cf9 SELECT\
+             \cf11 country,\
+             
+\f4\i \cf13 count
+\f3\i0 \cf11 (*) \cf9 AS \cf11 total_company_country,\
+\
+             \cf24 -- <= 5\
+             
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN \cf11 email_count <= \cf15 5 \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) \cf9 AS \cf11 companies_le5_emails,\
+             
+\f4\i \cf13 round
+\f3\i0 \cf11 (\
+                     \cf15 100.0 \cf11 * 
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN \cf11 email_count <= \cf15 5 \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 count
+\f3\i0 \cf11 (*), \cf15 0\cf11 ),\
+                     \cf15 2\
+             \cf11 ) \cf9 AS \cf11 pct_companies_le5_emails,\
+\
+             \cf24 -- > 5\
+             
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN \cf11 email_count > \cf15 5 \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) \cf9 AS \cf11 companies_gt5_emails,\
+             
+\f4\i \cf13 round
+\f3\i0 \cf11 (\
+                     \cf15 100.0 \cf11 * 
+\f4\i \cf13 sum
+\f3\i0 \cf11 (\cf9 CASE WHEN \cf11 email_count > \cf15 5 \cf9 THEN \cf15 1 \cf9 ELSE \cf15 0 \cf9 END\cf11 ) / 
+\f4\i \cf13 nullif
+\f3\i0 \cf11 (
+\f4\i \cf13 count
+\f3\i0 \cf11 (*), \cf15 0\cf11 ),\
+                     \cf15 2\
+             \cf11 ) \cf9 AS \cf11 pct_companies_gt5_emails\
+         \cf9 FROM \cf11 per_company_country\
+         \cf9 GROUP BY \cf11 country\
+     )\
+\
+\cf9 SELECT \cf11 *\
+\cf9 FROM \cf11 country_rollup\
+\cf9 ORDER BY \cf11 total_company_country \cf9 DESC\cf11 ;\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \cb1 \
+\
+In this highlight companies with highest and also the provide the entire table\
+And the top one give as insight that they are more and needs to work\
+\
+\
+\
+9. 
+\f5 \expnd0\expndtw0\kerning0
+Priority coverage (Top 5 emails per company per country)\
+\
+\
+1. The priority is whether it is in valid email format\
+2.There are no duplicates\
+3.status 200\
+4. Company domain should match with email domain\
+5. No Blocked email\
+6. Priority for sales@, info@, contact@ and so on}
